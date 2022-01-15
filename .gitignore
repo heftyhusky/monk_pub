@@ -1,0 +1,11 @@
+# .gitignore
+.DS_Store
+*.pyo
+*.pyc
+*.log
+*.xml
+*.iml
+.vscode/
+/htmlcov
+.coverage
+*.zip

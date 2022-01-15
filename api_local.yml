@@ -1,0 +1,23 @@
+version: '3.0'
+services:
+  api_local:
+    image: monk:1.0.0
+    command: bash -c "cd api && pipenv run uvicorn api.main:app --host 0.0.0.0 --port 8888"
+    ports:
+        - 8888:8888
+    hostname: "api"
+    restart: always
+    environment:
+      - TZ=Asia/Taipei
+    networks:
+        - my_network
+    deploy:
+      mode: replicated
+      replicas: 1
+      # placement:
+      #   constraints: [node.label.api == true]
+
+networks:
+  my_network:
+    # 加入已經存在的網路
+    external: true

@@ -1,0 +1,26 @@
+version: '3.0'
+services:
+  crawler_twse:
+    image: monk:1.0.0
+    hostname: "twse"
+    command: bash -c "cd /usr/app/db_mission_allocate && pipenv sync && pipenv run celery -A db_mission_allocate.tasks.worker worker --loglevel=info --concurrency=1  --hostname=%h"
+    # command: ls
+    # command: pipenv run celery -A db_mission_allocate.tasks.worker worker --loglevel=info --concurrency=1  --hostname=%h -Q twse
+    volumes: 
+     - /home/jkl/Documents/monk:/usr/app/
+    restart: always
+    environment:
+      - TZ=Asia/Taipei
+    networks:
+     - my_network
+    # swarm 設定
+    deploy:
+      mode: replicated
+      replicas: 1
+      # placement:
+      #   constraints: [node.labels.crawler_twse == true]
+    
+
+networks:
+  my_network:
+    external: true

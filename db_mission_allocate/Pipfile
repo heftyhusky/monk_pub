@@ -1,0 +1,19 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+numpy = "*"
+mysql-connector-python = "*"
+requests = "*"
+loguru = "*"
+celery = "*"
+db-mission-allocate = {editable = true, path = "."}
+index = {editable = true, path = "./../index"}
+dataclasses = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.6"

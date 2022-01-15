@@ -1,0 +1,17 @@
+name: Python application
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  unittest:
+    runs-on: ubuntu-latest
+    container:
+      image: kenhhsu/python_and_lib
+    steps:  
+    - uses: actions/checkout@v2
+    - name: test integrate_v5
+      run: coverage run index/main_test.py && coverage html
